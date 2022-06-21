@@ -22,18 +22,24 @@ namespace FrontToBack.Controllers
             homeVM.Sliders = sliders;
             homeVM.SliderContent = _context.SliderContents.FirstOrDefault();
             homeVM.Categories = _context.Categories.ToList();
-            homeVM.Products= _context.Products.Include(p=>p.Category).ToList();
+            homeVM.Products = _context.Products.Include(p => p.Category).ToList();
+            homeVM.Abouts = _context.Abouts.ToList();
+            homeVM.Experts = _context.Experts.ToList();
+            homeVM.Blogs = _context.Blogs.ToList();
+            homeVM.Instagrams = _context.Instagrams.ToList();
+            homeVM.Says = _context.Says.ToList();
+            
 
             return View(homeVM);
         }
         public IActionResult Detail(int? id)
         {
-            if(id == 0)
+            if (id == 0)
             {
                 return NotFound();
             }
-            Product dbProduct = _context.Products.FirstOrDefault(p=>p.Id==id);
-            if(dbProduct == null)
+            Product dbProduct = _context.Products.FirstOrDefault(p => p.Id == id);
+            if (dbProduct == null)
             {
                 return NotFound();
             }
