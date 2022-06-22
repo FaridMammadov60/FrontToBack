@@ -124,3 +124,5 @@ C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\bin\Debug\
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Home\Detail.cshtml.g.cs
+C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
+C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_loadMorePartial.cshtml.g.cs

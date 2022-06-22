@@ -28,7 +28,7 @@ namespace FrontToBack.Controllers
             homeVM.Blogs = _context.Blogs.ToList();
             homeVM.Instagrams = _context.Instagrams.ToList();
             homeVM.Says = _context.Says.ToList();
-            
+
 
             return View(homeVM);
         }

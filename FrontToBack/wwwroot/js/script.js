@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    
     // HEADER
 
     $(document).on('click', '#search', function () {
@@ -14,6 +14,25 @@ $(document).ready(function () {
         $('.mobile-navbar').addClass("active");
 
     })
+    //loadmore   
+    let skip = 2;
+    $(document).on('click', '#loadMore', function () {
+        
+        let productList = $("#productList");
+        let productCount = $("productCount");
+        $.ajax({
+            url: "/product/loadMore?skip="+skip,
+            method: "get",
+            success: function (res) {
+                productList.append(res);
+                skip += 2
+                if (skip >= productCount) {
+                    $("#loadMore").remove();                    
+                }
+            }
+        })
+    })
+
 
     $(document).on('click', '.mobile-navbar ul li a', function () {
         if ($(this).children('i').hasClass('fa-caret-right')) {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "95N84t6z++QRJicIuXEW8b4bkT+Fb3gZ/a+7kAUv3P/j7pJDLeChbVmOexicrheIfYgbgVxB/uFanYIAgZniiQ==",
+  "dgSpecHash": "Jws3XZYILQGtrPwfW9lmrlxyJFSmyfO8Mdph0wKeZdRarirrDc1N+smqZgrG6Jgr/xW5FZ8iNe+k5bNStGCyvg==",
   "success": true,
   "projectFilePath": "C:\\Users\\farid\\Desktop\\Code\\P322\\Task\\asp mvc\\FrontToBack\\FrontToBack\\FrontToBack.csproj",
   "expectedPackageFiles": [
@@ -156,8 +156,7 @@
     "C:\\Users\\farid\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\farid\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\farid\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\farid\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\farid\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.26\\microsoft.netcore.app.host.win-x64.3.1.26.nupkg.sha512"
+    "C:\\Users\\farid\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }
