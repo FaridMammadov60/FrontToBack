@@ -126,3 +126,4 @@ C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\bin\Debug\
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Home\Detail.cshtml.g.cs
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_loadMorePartial.cshtml.g.cs
+C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SearchPartial.cshtml.g.cs
