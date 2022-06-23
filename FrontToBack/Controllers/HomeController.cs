@@ -29,7 +29,7 @@ namespace FrontToBack.Controllers
             homeVM.Instagrams = _context.Instagrams.ToList();
             homeVM.Says = _context.Says.ToList();
 
-
+            
             return View(homeVM);
         }
         public IActionResult Detail(int? id)
