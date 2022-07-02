@@ -130,3 +130,4 @@ C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Product\Default.cshtml.g.cs
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Header\Default.cshtml.g.cs
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Footer\Default.cshtml.g.cs
+C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Product\Detail.cshtml.g.cs
