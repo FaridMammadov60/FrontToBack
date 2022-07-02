@@ -29,16 +29,16 @@ namespace FrontToBack.Controllers
             homeVM.Instagrams = _context.Instagrams.ToList();
             homeVM.Says = _context.Says.ToList();
 
-            
+
             return View(homeVM);
         }
-       
+
         public IActionResult SearchProduct(string search)
         {
             List<Product> products = _context.Products
-                .Include(p=>p.Category)
-                .OrderBy(p => p.Id)                
-                .Where(p=>p.Name.ToLower()                
+                .Include(p => p.Category)
+                .OrderBy(p => p.Id)
+                .Where(p => p.Name.ToLower()
                 .Contains(search.ToLower()))
                 .Take(10)
                 .ToList();

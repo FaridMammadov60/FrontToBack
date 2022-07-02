@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FrontToBack.ViewComponents
 {
-    public class FooterViewComponent:ViewComponent
+    public class FooterViewComponent : ViewComponent
     {
         private readonly AppDbContext _context;
         public FooterViewComponent(AppDbContext context)

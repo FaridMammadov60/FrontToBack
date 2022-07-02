@@ -48,15 +48,15 @@ namespace FrontToBack.Controllers
             //return View();
             //return Json(products);
             #endregion
-            
+
             List<Product> products = _context.Products.Skip(skip).Take(2).Include(p => p.Category).ToList();
             return PartialView("_loadMorePartial", products);
         }
-        public IActionResult Detail (int? id)
+        public IActionResult Detail(int? id)
         {
             if (id == null) return NotFound();
-            Product dbproduct= _context.Products.FirstOrDefault(p => p.Id == id);
-            if(dbproduct == null) return NotFound();
+            Product dbproduct = _context.Products.FirstOrDefault(p => p.Id == id);
+            if (dbproduct == null) return NotFound();
             return View(dbproduct);
         }
     }

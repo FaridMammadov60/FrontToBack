@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FrontToBack.ViewComponents
 {
-    public class ProductViewComponent:ViewComponent
+    public class ProductViewComponent : ViewComponent
     {
         private readonly AppDbContext _context;
         public ProductViewComponent(AppDbContext context)
