@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FrontToBack.Controllers
@@ -45,19 +46,18 @@ namespace FrontToBack.Controllers
                 BasketVM basketVM = new BasketVM()
                 {
                     Id = dbProduct.Id,
-                    Name = dbProduct.Name,
-                    ImageUrl = dbProduct.ImageUrl,
                     Price = dbProduct.Price,
-                    CategoryId = dbProduct.CategoryId,
+
                     ProductCount = 1
                 };
+                products.Add(basketVM);
             }
             else
             {
                 existProduct.ProductCount++;
-            }           
+            }
 
-            
+
             Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
 
             return RedirectToAction("index", "home");
@@ -67,8 +67,79 @@ namespace FrontToBack.Controllers
             //string name= HttpContext.Session.GetString("name");
             //string group=Request.Cookies["GROUP"];
             string basket = Request.Cookies["basket"];
-            List<BasketVM> p = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
-            return Json(p);
+            List<BasketVM> products;
+            if (basket != null)
+            {
+                products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+                foreach (var item in products)
+                {
+                    Product dbProduct = _context.Products.FirstOrDefault(p => p.Id == item.Id);
+                    item.Price = dbProduct.Price;
+                    item.CategoryId = dbProduct.CategoryId;
+                    item.ImageUrl = dbProduct.ImageUrl;
+                    item.Name = dbProduct.Name;
+                }
+            }
+            else
+            {
+                products = new List<BasketVM>();
+            }
+            return View(products);
+        }
+        public IActionResult Minus(int? id)
+        {
+            if (id == null) return NotFound();
+
+
+            string basket = Request.Cookies["basket"];
+            List<BasketVM> products;
+            products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+            BasketVM dbProduct = products.FirstOrDefault(p => p.Id == id);
+            if (dbProduct == null) return NotFound();
+            if (dbProduct.ProductCount > 1)
+            {
+                dbProduct.ProductCount--;
+            }
+            else
+            {
+                products.Remove(dbProduct);
+            }
+            Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
+
+            return RedirectToAction("showitem", "basket");
+        }
+        public IActionResult Plus(int? id)
+        {
+            if (id == null) return NotFound();
+
+            string basket = Request.Cookies["basket"];
+            List<BasketVM> products;
+            products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+            BasketVM dbProduct = products.FirstOrDefault(p => p.Id == id);
+            if (dbProduct == null) return NotFound();
+
+            dbProduct.ProductCount++;
+
+            Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
+
+            return RedirectToAction("showitem", "basket");
+        }
+        public IActionResult Remove(int? id)
+        {
+            if (id == null) return NotFound();
+
+
+            string basket = Request.Cookies["basket"];
+            List<BasketVM> products;
+            products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+            BasketVM dbProduct = products.FirstOrDefault(p => p.Id == id);
+            if (dbProduct == null) return NotFound();
+           
+                products.Remove(dbProduct);
+            
+            Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
+
+            return RedirectToAction("showitem", "basket");
         }
     }
 }

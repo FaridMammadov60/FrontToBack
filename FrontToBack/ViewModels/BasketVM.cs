@@ -1,6 +1,4 @@
-﻿using FrontToBack.Models;
-
-namespace FrontToBack.ViewModels
+﻿namespace FrontToBack.ViewModels
 {
     public class BasketVM
     {
