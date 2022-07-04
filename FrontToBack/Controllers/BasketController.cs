@@ -134,9 +134,9 @@ namespace FrontToBack.Controllers
             products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
             BasketVM dbProduct = products.FirstOrDefault(p => p.Id == id);
             if (dbProduct == null) return NotFound();
-           
-                products.Remove(dbProduct);
-            
+
+            products.Remove(dbProduct);
+
             Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
 
             return RedirectToAction("showitem", "basket");
