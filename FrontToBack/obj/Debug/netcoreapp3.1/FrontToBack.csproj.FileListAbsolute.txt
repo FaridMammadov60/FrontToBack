@@ -141,3 +141,6 @@ C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Category\Detail.cshtml.g.cs
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Shared\_ValidationPartial.cshtml.g.cs
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Category\Update.cshtml.g.cs
+C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Product\Index.cshtml.g.cs
+C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Product\Detail.cshtml.g.cs
+C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Product\Create.cshtml.g.cs

@@ -1,0 +1,62 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminPanelLayout.cshtml";
+    int count = 0;
+}
+
+ <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h3 class="box-title">Product Table</h3>
+                           <a class="btn btn-warning" asp-action="create">Add Product</a>
+                            <div class="table-responsive">
+                                <table class="table text-wrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">No</th>
+                                            <th class="border-top-0">Image</th>
+                                            <th class="border-top-0">Name</th>
+                                            <th class="border-top-0">Price</th>
+                                            <th class="border-top-0">Count</th>
+                                            <th class="border-top-0">Category</th>
+                                            <th class="border-top-0">Settings</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                       {
+                                           count++;
+                                            <tr>
+                                            <td>@count</td>
+                                            <td>
+                                                <img width="50" src="~/img/@item.ImageUrl"/>
+                                            </td>
+                                            <td>@item.Name</td>
+                                            <td>@item.Price</td>
+                                            <td>@item.Count</td>
+                                            <td>@item.Category.Name</td>
+
+                                          <td>
+                                 <a class="btn btn-warning" asp-action="update" asp-route-id="@item.Id">
+                                     <i style="font-size:20px" class="mdi mdi-table-edit"></i>
+                                 </a>
+                                 <a class="btn btn-primary" asp-action="detail" asp-route-id="@item.Id">
+                                     <i style="font-size:20px" class="mdi mdi-account-card-details"></i>
+                                     </a>
+                                 <a class="btn btn-danger" asp-action="delete" asp-route-id="@item.Id">
+                                     <i style="font-size:20px" class="mdi mdi-delete-forever"></i>
+                                 </a>
+                             </td>
+                                        </tr>
+                                       }
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
