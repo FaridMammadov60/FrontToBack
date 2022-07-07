@@ -129,6 +129,7 @@ namespace FrontToBack.Areas.AdminPanel.Controllers
                         return View();
                     }
                 }
+
                 if (product.Photo == null)
                 {
                     dbProd.ImageUrl = dbProd.ImageUrl;
