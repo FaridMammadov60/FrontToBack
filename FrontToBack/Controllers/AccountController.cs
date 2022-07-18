@@ -35,7 +35,7 @@ namespace FrontToBack.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registr(RegistrVM registrVM)
-        {                       
+        {
             if (!ModelState.IsValid) return View();
             AppUser user = new AppUser
             {
@@ -53,7 +53,7 @@ namespace FrontToBack.Controllers
                 }
                 return View();
             }
-            await _signInManager.SignInAsync(user,true);
+            await _signInManager.SignInAsync(user, true);
             await _userManager.AddToRoleAsync(user, UserRoles.Member.ToString());
             return RedirectToAction("login", "account");
         }
@@ -92,15 +92,15 @@ namespace FrontToBack.Controllers
                 ModelState.AddModelError("", "Istifadeci adi ve ya sifre yanlishdir");
                 return View(loginVM);
             }
-            var roles =await _userManager.GetRolesAsync(appUser);
+            var roles = await _userManager.GetRolesAsync(appUser);
             foreach (var item in roles)
             {
-                if (item=="SuperAdmin")
+                if (item == "SuperAdmin")
                 {
-                    return RedirectToAction("index", "dashboard", new {area="AdminPanel"});
+                    return RedirectToAction("index", "dashboard", new { area = "AdminPanel" });
                 }
             }
-            if (ReturnUrl!=null)
+            if (ReturnUrl != null)
             {
                 return Redirect(ReturnUrl);
             }
@@ -110,7 +110,7 @@ namespace FrontToBack.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
-        }       
+        }
         public async Task CreateRole()
         {
             foreach (var item in Enum.GetValues(typeof(UserRoles)))

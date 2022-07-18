@@ -1,4 +1,4 @@
-﻿@model List<Product>
+﻿@model PaginationVM<Product>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/AdminPanel/Views/Shared/_AdminPanelLayout.cshtml";
@@ -25,7 +25,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var item in Model)
+                                        @foreach (var item in Model.Items)
                                        {
                                            count++;
                                             <tr>
@@ -57,6 +57,22 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>             
+
+
+ <div class="col-6 d-flex justify-context-center">
+    <nav aria-label="...">
+       <ul class="pagination">
+           @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                 <li class="page-item @(Model.CurrentPage==i?"disabled":"")">
+                 <a class="page-link" asp-action="index" asp-route-page="@i">@i</a>
+                  </li>
+            }
+   
+ 
+       </ul>
+    </nav>
+ </div>
 
 
