@@ -10,4 +10,11 @@
             }
         }
     }
+    public enum UserRoles
+    {
+        Member = 1,
+        Manager = 2,
+        Admin = 4,
+        SuperAdmin = 8,
+    }
 }

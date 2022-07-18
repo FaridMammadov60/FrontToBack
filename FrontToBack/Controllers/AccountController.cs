@@ -1,4 +1,5 @@
-﻿using FrontToBack.Models;
+﻿using FrontToBack.Helper;
+using FrontToBack.Models;
 using FrontToBack.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -34,26 +35,26 @@ namespace FrontToBack.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registr(RegistrVM registrVM)
-        {
-
+        {                       
             if (!ModelState.IsValid) return View();
-            AppUser appUser = new AppUser
+            AppUser user = new AppUser
             {
                 FullName = registrVM.FullName,
                 UserName = registrVM.UserName,
                 Email = registrVM.Email,
             };
-            IdentityResult result = await _userManager.CreateAsync(appUser, registrVM.Password);
+            IdentityResult result = await _userManager.CreateAsync(user, registrVM.Password);
 
             if (!result.Succeeded)
             {
                 foreach (var item in result.Errors)
                 {
-                    ModelState.AddModelError("", item.Description);                    
+                    ModelState.AddModelError("", item.Description);
                 }
                 return View();
             }
-
+            await _signInManager.SignInAsync(user,true);
+            await _userManager.AddToRoleAsync(user, UserRoles.SuperAdmin.ToString());
             return RedirectToAction("login", "account");
         }
 
@@ -70,12 +71,12 @@ namespace FrontToBack.Controllers
             AppUser appUser = await _userManager.FindByEmailAsync(loginVM.Email);
             if (appUser == null)
             {
-                ModelState.AddModelError("","Istifadeci adi ve ya sifre yanlishdir");
+                ModelState.AddModelError("", "Istifadeci adi ve ya sifre yanlishdir");
                 return View(loginVM);
             }
-            
+
             SignInResult result = await _signInManager.PasswordSignInAsync(appUser, loginVM.Password, true, true);
-                        
+
             if (result.IsLockedOut)
             {
                 TimeSpan timeSpan = appUser.LockoutEnd.Value.UtcDateTime.ToUniversalTime() - DateTime.Now.ToUniversalTime();
@@ -98,6 +99,16 @@ namespace FrontToBack.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }       
+        public async Task CreateRole()
+        {
+            foreach (var item in Enum.GetValues(typeof(UserRoles)))
+            {
+                if (!await _rolemanager.RoleExistsAsync(item.ToString()))
+                {
+                    await _rolemanager.CreateAsync(new IdentityRole { Name = item.ToString() });
+                }
+            }
         }
     }
 }

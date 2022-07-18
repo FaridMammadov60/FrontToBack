@@ -44,7 +44,7 @@ namespace FrontToBack
                 opt.Lockout.MaxFailedAccessAttempts = 3;
                 opt.Lockout.AllowedForNewUsers = true;
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(20);
-                                
+
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
         }
 

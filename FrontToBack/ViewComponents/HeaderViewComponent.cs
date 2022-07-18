@@ -17,7 +17,7 @@ namespace FrontToBack.ViewComponents
         public HeaderViewComponent(AppDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
-            _userManager=userManager;
+            _userManager = userManager;
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {

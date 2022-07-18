@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,7 +38,7 @@ namespace FrontToBack.Areas.AdminPanel.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.Categories = new SelectList(_context.Categories.ToList(),"Id","Name");
+            ViewBag.Categories = new SelectList(_context.Categories.ToList(), "Id", "Name");
             return View();
         }
         [HttpPost]
@@ -65,7 +64,7 @@ namespace FrontToBack.Areas.AdminPanel.Controllers
             }
             ViewBag.Categories = _context.Categories.ToList();
 
-           
+
             Product newProduct = new Product
             {
                 Price = product.Price,
@@ -73,9 +72,9 @@ namespace FrontToBack.Areas.AdminPanel.Controllers
                 CategoryId = product.CategoryId,
                 ImageUrl = product.Photo.SaveImage(_env, "img"),
             };
-           await _context.Products.AddAsync(newProduct);
+            await _context.Products.AddAsync(newProduct);
             _context.SaveChanges();
-                return RedirectToAction("index");
+            return RedirectToAction("index");
         }
         public async Task<IActionResult> Delete(int? Id)
         {
@@ -103,7 +102,7 @@ namespace FrontToBack.Areas.AdminPanel.Controllers
 
 
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(Product product)
