@@ -54,7 +54,7 @@ namespace FrontToBack.Controllers
                 return View();
             }
             await _signInManager.SignInAsync(user,true);
-            await _userManager.AddToRoleAsync(user, UserRoles.SuperAdmin.ToString());
+            await _userManager.AddToRoleAsync(user, UserRoles.Member.ToString());
             return RedirectToAction("login", "account");
         }
 
@@ -65,7 +65,7 @@ namespace FrontToBack.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginVM loginVM)
+        public async Task<IActionResult> Login(LoginVM loginVM, string ReturnUrl)
         {
             if (!ModelState.IsValid) return View();
             AppUser appUser = await _userManager.FindByEmailAsync(loginVM.Email);
@@ -92,7 +92,18 @@ namespace FrontToBack.Controllers
                 ModelState.AddModelError("", "Istifadeci adi ve ya sifre yanlishdir");
                 return View(loginVM);
             }
-
+            var roles =await _userManager.GetRolesAsync(appUser);
+            foreach (var item in roles)
+            {
+                if (item=="SuperAdmin")
+                {
+                    return RedirectToAction("index", "dashboard", new {area="AdminPanel"});
+                }
+            }
+            if (ReturnUrl!=null)
+            {
+                return Redirect(ReturnUrl);
+            }
             return RedirectToAction("Index", "Home");
         }
         public async Task<IActionResult> Logout()
