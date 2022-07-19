@@ -118,8 +118,9 @@ namespace FrontToBack.Controllers
                     saleProduct.Count = basketProduct.ProductCount;
                     saleProduct.Price = dbProduct.Price;
                     saleProduct.Id = sale.Id;
-                    saleProducts.Add(saleProduct);
+                    saleProducts.Add(saleProduct);                    
                     total += basketProduct.ProductCount * dbProduct.Count;
+                    dbProduct.Count = dbProduct.Count - saleProduct.Count;
                 }
                 sale.SalesProducts = saleProducts;
                 await _context.AddAsync(sale);
