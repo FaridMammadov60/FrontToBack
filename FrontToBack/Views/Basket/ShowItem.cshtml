@@ -9,10 +9,16 @@
     
         @if (TempData["success"]!=null)
         {
-            <div class="alert-success" id="sale">
-             @TempData["success"]
+            <div class="alert-success sale">
+             @TempData["success"]             
              </div>
-        }       
+        }   
+        @if (TempData["fail"]!=null)
+        {
+            <div class="alert-danger sale">
+             @TempData["fail"]             
+             </div>
+        }
     
     <div class="row">
         @if (Model.Count > 0)
@@ -52,14 +58,14 @@
     
   </tbody>
 </table>
-        }
+         }
         else{
             <a asp-controller="home" asp-action="index">Go to home</a><br />
         }
     </div>
     <br />
     <div class="row">
-        @Model.Sum(p=>p.Price*p.ProductCount);
+        @Model.Sum(p=>p.Price*p.ProductCount)
         <form method="post">
             <button type="submit" class="btn btn-success">
                 sale
@@ -72,8 +78,11 @@
     <script>
         setTimeout(function()
         {
-               document.getElementById("sale").remove();
-         }, 5000)
+            document.querySelectorAll("sale").forEach(item => 
+            {
+                item.remove();
+                });
+         }, 50000)
     </script>
 }
 

@@ -89,6 +89,50 @@ namespace FrontToBack.Controllers
             }
             return View(products);
         }
+
+        [HttpPost]
+        [ActionName("ShowItem")]
+        public async Task<IActionResult> Sale()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+                Sale sale = new Sale();
+                sale.SaleDate = DateTime.Now;
+                sale.AppUserId = user.Id;
+
+                List<BasketVM> basketProducts = JsonConvert.
+                    DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]);
+                List<SalesProduct> saleProducts = new List<SalesProduct>();
+                double total = 0;
+                foreach (var basketProduct in basketProducts)
+                {
+                    Product dbProduct = await _context.Products.FindAsync(basketProduct.Id);
+                    if (basketProduct.ProductCount>dbProduct.Count)
+                    {
+                        TempData["fail"] = "sale fail";
+                        return RedirectToAction("ShowItem");
+                    }
+                    SalesProduct saleProduct = new SalesProduct();
+                    saleProduct.ProductId = dbProduct.Id;
+                    saleProduct.Count = basketProduct.ProductCount;
+                    saleProduct.Price = dbProduct.Price;
+                    saleProduct.Id = sale.Id;
+                    saleProducts.Add(saleProduct);
+                    total += basketProduct.ProductCount * dbProduct.Count;
+                }
+                sale.SalesProducts = saleProducts;
+                await _context.AddAsync(sale);
+                await _context.SaveChangesAsync();
+                TempData["success"] = "sale success";
+                return RedirectToAction("ShowItem");
+
+            }
+            else
+            {
+                return View("login", "account");
+            }
+        }
         public IActionResult Minus(int? id)
         {
             if (id == null) return NotFound();
@@ -145,38 +189,6 @@ namespace FrontToBack.Controllers
             return RedirectToAction("showitem", "basket");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Sale()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-                Sale sale = new Sale();
-                sale.SaleDate = DateTime.Now;
-                sale.AppUserId = user.Id;
-
-                List<BasketVM> basketProducts = JsonConvert.
-                    DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]);
-                List<SalesProduct> saleProducts = new List<SalesProduct>();
-                double total = 0;
-                foreach (var basketProduct in basketProducts)
-                {
-                    Product dbProduct = await _context.Products.FindAsync(basketProduct.Id);
-                    SalesProduct saleProduct = new SalesProduct();
-                    saleProduct.ProductId = dbProduct.Id;
-                    saleProduct.Count = basketProduct.ProductCount;
-                    saleProduct.Id = sale.Id;
-                    saleProducts.Add(saleProduct);
-                    total += basketProduct.ProductCount * dbProduct.Count;
-                }
-                sale.SalesProducts = saleProducts;
-                await _context.AddAsync(sale);
-                await _context.SaveChangesAsync();
-                TempData["success"] = "sale success";
-                return RedirectToAction("ShowItem");
-
-            }
-            return View();
-        }
+        
     }
 }
