@@ -27,7 +27,7 @@ namespace FrontToBack.Areas.AdminPanel.Controllers
             var users = search == null ? _userManager.Users.ToList() :
                 _userManager.Users.Where(user => user.FullName.ToLower()
                 .Contains(search.ToLower())).ToList();
-               
+
             //var users = _userManager.Users.ToList();
             //var user = _userManager.Users.FirstOrDefault(u=> u.Id == Id); 
             //var userRoles = await _userManager.GetRolesAsync(user);
@@ -88,7 +88,6 @@ namespace FrontToBack.Areas.AdminPanel.Controllers
             AppUser user = new AppUser
             {
                 FullName = registerVM.FullName,
-
             };
 
             IdentityResult result = await _userManager.CreateAsync(user, registerVM.Password);

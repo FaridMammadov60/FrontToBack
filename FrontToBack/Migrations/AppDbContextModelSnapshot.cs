@@ -241,6 +241,57 @@ namespace FrontToBack.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("FrontToBack.Models.Sale", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("SaleDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Total")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Sales");
+                });
+
+            modelBuilder.Entity("FrontToBack.Models.SalesProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SaleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SaleId");
+
+                    b.ToTable("SalesProducts");
+                });
+
             modelBuilder.Entity("FrontToBack.Models.Say", b =>
                 {
                     b.Property<int>("Id")
@@ -437,6 +488,28 @@ namespace FrontToBack.Migrations
                     b.HasOne("FrontToBack.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FrontToBack.Models.Sale", b =>
+                {
+                    b.HasOne("FrontToBack.Models.AppUser", "AppUser")
+                        .WithMany("Sales")
+                        .HasForeignKey("AppUserId");
+                });
+
+            modelBuilder.Entity("FrontToBack.Models.SalesProduct", b =>
+                {
+                    b.HasOne("FrontToBack.Models.Product", "Product")
+                        .WithMany("SalesProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FrontToBack.Models.Sale", "Sale")
+                        .WithMany("SalesProducts")
+                        .HasForeignKey("SaleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -20,5 +20,7 @@ namespace FrontToBack.DAL
         public DbSet<Instagram> Instagrams { get; set; }
         public DbSet<Say> Says { get; set; }
         public DbSet<Bio> Bio { get; set; }
+        public DbSet<Sale> Sales { get; set; }
+        public DbSet<SalesProduct> SalesProducts { get; set; }
     }
 }

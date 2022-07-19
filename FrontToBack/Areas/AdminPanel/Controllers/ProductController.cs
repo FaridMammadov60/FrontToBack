@@ -30,11 +30,11 @@ namespace FrontToBack.Areas.AdminPanel.Controllers
 
         public IActionResult Index(int page = 1, int take = 5)
         {
-            List<Product> products = _context.Products.Include(p=>p.Category)
+            List<Product> products = _context.Products.Include(p => p.Category)
                 .Skip((page - 1) * take).Take(take).ToList();
-            
-            PaginationVM<Product> paginationVM= new PaginationVM<Product>(products, PageCount(take), page);
-            
+
+            PaginationVM<Product> paginationVM = new PaginationVM<Product>(products, PageCount(take), page);
+
             return View(paginationVM);
         }
         private int PageCount(int take)
