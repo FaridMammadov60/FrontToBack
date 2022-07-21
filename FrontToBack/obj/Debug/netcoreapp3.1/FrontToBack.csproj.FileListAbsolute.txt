@@ -153,3 +153,5 @@ C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Role\Create.cshtml.g.cs
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\User\Update.cshtml.g.cs
 C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\User\Create.cshtml.g.cs
+C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Contact\Index.cshtml.g.cs
+C:\Users\farid\Desktop\Code\P322\Task\asp mvc\FrontToBack\FrontToBack\obj\Debug\netcoreapp3.1\Razor\Views\Contact\send.cshtml.g.cs

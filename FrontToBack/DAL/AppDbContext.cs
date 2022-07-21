@@ -22,5 +22,46 @@ namespace FrontToBack.DAL
         public DbSet<Bio> Bio { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<SalesProduct> SalesProducts { get; set; }
-    }
+        public DbSet<Contact> Contacts { get; set; }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);  
+        //    modelBuilder.Entity<Bio>().HasData(
+        //        new Bio
+        //        {
+        //            Id = 1,
+        //            ImageUrl = "logo.png",
+        //            AuthorName = "Farid Mammadov",
+        //            Linkedin = "www.linkedin.com",
+        //            Facebook = "www.facebook.com",
+        //        }
+        //    );
+        //    modelBuilder.Entity<Blog>().HasData(
+        //        new Blog
+        //        {
+        //            Id = 1,
+        //            Title = "From our Blog",
+        //            Desc = "A perfect blend of creativity, energy, communication, happiness and love.Let us arrange  a smile for you"
+        //        }
+        //    ); 
+        //    modelBuilder.Entity<Slider>().HasData(
+        //        new Slider
+        //        {
+        //            Id = 1,
+        //            ImageUrl = "h3-slider-background.jpg"
+        //        },
+        //        new Slider
+        //        {
+        //            Id = 2,
+        //            ImageUrl = "h3-slider-background-2.jpg"
+        //        },
+        //        new Slider
+        //        {
+        //            Id = 3,
+        //            ImageUrl = "h3-slider-background-3.jpg"
+        //        }
+        //    );           
+        //}
+    }   
 }

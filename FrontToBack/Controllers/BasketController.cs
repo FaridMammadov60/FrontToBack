@@ -121,6 +121,7 @@ namespace FrontToBack.Controllers
                     saleProducts.Add(saleProduct);                    
                     total += basketProduct.ProductCount * dbProduct.Count;
                     dbProduct.Count = dbProduct.Count - saleProduct.Count;
+                    
                 }
                 sale.SalesProducts = saleProducts;
                 await _context.AddAsync(sale);
@@ -137,7 +138,6 @@ namespace FrontToBack.Controllers
         public IActionResult Minus(int? id)
         {
             if (id == null) return NotFound();
-
 
             string basket = Request.Cookies["basket"];
             List<BasketVM> products;
